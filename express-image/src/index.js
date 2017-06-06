@@ -5,28 +5,27 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(req, res){
-	res.send(generateStudents());
-	console.log('Received GET request to the root page !');	
+	res.send(generateCitiesAndCities());
+	//console.log('Received GET request to the root page !');	
 });
 
 app.listen(3000,  function() {
 	console.log('Accepting HTTP requests on port 3000.')
 });
 
-function generateStudents(){
-	var numberOfStudents = chance.integer({min: 0, max: 10});
-	console.log("Number of students : " + numberOfStudents);
-	var students = [];
-	for (var i = 0 ; i < numberOfStudents ; i++) {
-		var gender = chance.gender();
-		var birthYear = chance.year({min: 1986, max: 1996});
-		students.push({
-			firstName: chance.first({gender: gender}),
-			lastName: chance.last(), 
-			gender: gender,
-			birthday: chance.birthday({year: birthYear})
-		});  
+//Generate random cities in random countries around the world
+function generateCitiesAndCities(){
+	var numberOfCities = chance.integer({min: 0, max: 15});
+	console.log("Number of generated cities : " + numberOfCities);
+	var cities = [];
+	for (var i = 0 ; i < numberOfCities ; i++) {
+		var country = chance.country({full: true});
+		var city = chance.city({country: country});
+		cities.push({
+			country: country,
+			city: city
+		});
 	};
-	console.log(students);
-	return students; 
+	console.log(cities);
+	return cities; 
 }
