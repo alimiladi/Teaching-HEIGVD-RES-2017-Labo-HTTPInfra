@@ -1,6 +1,6 @@
-#Laboratoire HTTP Infrasctructure
+# Laboratoire HTTP Infrasctructure
 
-###Première étape : Serveur apache httpd dockerisé servant du contenu statique
+### Première étape : Serveur apache httpd dockerisé servant du contenu statique
 
 Pour la réalisation de cette étape, nous avons suivi le webcast fourni par le professeur sur le repo [Github](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra) du laboratoire. 
 
@@ -15,3 +15,16 @@ Un template gratuit a été téléchargé depuis [bootstrap](https://startbootst
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-apache-static/ressources/template.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-apache-static/ressources/template.PNG)
 
+### Deuxième étape : Application express.js dockérisée servant du contenu dynamique
+
+Nous nous sommes appuiés sur le webcast fourni par le professeur afin de compléter cette partie. 
+
+L'image `Docker` choisie pour cette section est celle de `node.js` trouvée sur [dockerhub](https://hub.docker.com/_/node/). Nous avons vu que la dernière version stable de `node.js` est la `6.10.3`, c'est pour cette raison que nous avons choisi cette dernière dans le `Dockerfile` de l'image `Docker` que nous avons construit.
+
+L'application a été lancée dans un container `Docker` et les tests de communication ont été établis avec le navigateur `Mozilla Firefox`, `telnet` et `postman`.
+
+A l'aide d'un `port-mapping` entre le port de l'application (3000) et celui utilisé dans le `deamon` `docker-machine`, nous avons facilement pu nous connecter au container depuis l'extérieur et voir qu'il fonctionnait bien.
+
+L'application renvoie un tableau de longueur aléatoire contenant des noms de pays et cités aléatoires en réaction à la requête `GET` de la racine `/`.
+
+Le module `chance.js` est utilisé pour la génération de contenu aléatoire. La longueur du tableau est aussi générée aléatoirement. Dans chaque entrée du tableau on a le nom d'un pays et le nom d'une ville aléatoires.
