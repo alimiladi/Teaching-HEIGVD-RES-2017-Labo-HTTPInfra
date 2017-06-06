@@ -28,3 +28,23 @@ A l'aide d'un `port-mapping` entre le port de l'application (3000) et celui util
 L'application renvoie un tableau de longueur aléatoire contenant des noms de pays et cités aléatoires en réaction à la requête `GET` de la racine `/`.
 
 Le module `chance.js` est utilisé pour la génération de contenu aléatoire. La longueur du tableau est aussi générée aléatoirement. Dans chaque entrée du tableau on a le nom d'un pays et le nom d'une ville aléatoires.
+
+**Test sur localhost avec le navigateur**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_localhost.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_localhost.PNG)
+
+**Test sur localhost avec telnet**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_localhost_telnet.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_localhost_telnet.PNG)
+
+**Test sur le container docker avec le navigateur**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_browser.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_browser.PNG)
+
+**Test sur le container docker avec telnet**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_telnet.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_telnet.PNG)
+
+**Test sur le container docker avec postman**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_postman.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_postman.PNG)
