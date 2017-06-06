@@ -14,3 +14,4 @@ Un template gratuit a été téléchargé depuis [bootstrap](https://startbootst
 
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-apache-static/ressources/template.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-apache-static/ressources/template.PNG)
+
