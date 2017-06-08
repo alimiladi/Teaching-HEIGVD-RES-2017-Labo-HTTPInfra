@@ -48,3 +48,29 @@ Le module `chance.js` est utilisé pour la génération de contenu aléatoire. L
 **Test sur le container docker avec postman**
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_postman.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-express-dynamic/ressources/express_app_docker_postman.PNG)
+
+### Troisième partie : Serveur apache httpd fonctionnant en reverse proxy
+
+Dans cette partie, nous nous sommes aussi appuiés sur les webcasts fournis par le professeur.
+
+Le but de cette partie est de lancer un serveur `apache httpd` en `reverse-proxy` dans un container `Docker`, un container wrappant le serveur de la première partie et un container wrappant l'application décrite dans la deuxième partie. Le `reverse-proxy` doit par la suite démultiplexer le trafic et le rediriger vers l'un ou l'autre des containers.
+
+Ceci fait du `reverse-proxy` le seul point d'entrée à l'infrastructure du laboratoire, vu que les deux containers décrits précédemment ne sont pas accessibles depuis l'extérieur du `deamon Docker`. 
+
+Le avantages de l'utilisation de ce type de structure ici est d'augmenter la sécurité de l'infrastructure derrière le `reverse-proxy` ainsi que de respecter le principe du [same origin policy](https://fr.wikipedia.org/wiki/Same-origin_policy). 
+
+La configuration du `rp` a été effectuée dans le fichier `/etc/apache2/sites-available` dans un fichier nommé `001-reverse-proxy.conf`. Dans ce fichier, la configuration du `VirtualHost` a été effectuée afin de router seulement les requêtes `GET` ayant spécifié le `Host: lab.res.ch`. Deux types de contenu sont cependant servis. 
+
+Pour les requêtes vers la racine `/`, renvoient le contenu statique du site web géré par le conteneur `Docker` de la première partie et pour celles vers le chemin `/api/cities/`, elles sont redirrigées vers l'application express de la deuxième partie qui renvoie du contenu dynamique.
+
+Après avoir effectué les tests nécessaires de connectivité dans un container `php:7.0-apache`, le `Dockerfile` d'une nouvelle image a été configuré pour utiliser cette même image `php`. L'image va copier dans `/etc/apache2` le contenu d'un dossier de configuration établi au préalable, activer le mode `proxy` sur le serveur, et activer les nouveaux sites.
+
+L'image ainsi construite et le container lancé avec un `port-mapping`, nous avons pu tester que le `reverse-proxy` fonctionnait bien avec un `telnet`mais pas avec le navigateur. Le problème est que dans ce dernier, il n'y a pas moyen de spécifier le nom d'hôte ce qui fait que le `rp` refuse l'accès. Pour palier à ceci, un nom de domaine a été rajouté dans le fichier `C:\Windows\System32\drivers\etc\Hosts` dans windows (`/etc/hosts` dans linux).
+
+**Test sur le container php:7.0-apache**
+[![]()]()
+[![]()]()
+[![]()]()
+[![]()]()
+[![]()]()
+[![]()]()
