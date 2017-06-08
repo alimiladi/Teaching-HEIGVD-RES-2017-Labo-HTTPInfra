@@ -69,10 +69,18 @@ L'image ainsi construite et le container lancé avec un `port-mapping`, nous avo
 
 L'inconvénient de l'implémentation du `reverse-proxy` de cette manière est que les addresses ip dans les routes vers les conteneurs ont été mises en dur dans le fichier de config `001-reverse-proxy.conf`. Ceci n'est pas une bonne pratique car les conteneurs risquent de changer d'adresse lors d'un prochain démarrage et les routes seront alors perdues. Ceci convient cependant dans notre cas pour tester que le `rp` fonctionne et qu'il renvoie la bonne structure.
 
-**Test sur le container php:7.0-apache**
-[![]()]()
-[![]()]()
-[![]()]()
-[![]()]()
-[![]()]()
-[![]()]()
+**Test sur le container php:7.0-apache --> routage vers la page html**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image_dynamic.PNG)
+
+**Test sur le container php:7.0-apache --> routage vers l'application express**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image_dynamic.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image_dynamic.PNG)
+
+**Test sur le container php:7.0-apache --> accès refusé**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image_forbidden.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_test_on_php_image_forbidden.PNG)
+
+**Tests sur le nouveau container Docker**
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_tests_on_own_container.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/rp_tests_on_own_container.PNG)
