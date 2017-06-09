@@ -89,3 +89,21 @@ L'inconvénient de l'implémentation du `reverse-proxy` de cette manière est qu
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/Hosts_file_windows.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/Hosts_file_windows.PNG)
 
+### Quatrième étape : Requêtes AJAX avec JQuery
+
+Cette partie a été réalisée en s'appuiant sur les webcasts fournis par le professeur. 
+
+Les modifications apprtées à la structure construite jusqu'ici sont les suivantes: 
+
+* Modification des `Dockerfile`s des containers construits jusqu'ici pour qu'ils installent l'éditeur de texte `vim`.
+* Rajout d'un script `javaScript` permettant de faire des requêtes `AJAX` depuis la page statique vers le container wrappant le serveur `express.js` dynamique. Ce script est respondable d'envoyer une requête au serveur, récupérer la réponse (un tableau de pays/villes) et afficher dans la page un message personnalisé extrait du premier élément du tableau. Dans le cas oû le tableau est vide, le script affiche un message par défaut.
+* Rajout de l'importation du script ci-dussus dans le fichier `index.html` de la page statique.
+
+Les tests ont été effectués depuis le conteneur wrappant le serveur `apache` statique. Le script `cities.js` a été rajouté sous `/var/www/html/js/`. Ce dernier défini la fonction responsable de lancer la requête `AJAX`, récupérer la réponse et afficher le message. 
+
+Nous avons remarqué que les importations des librairies `js`, `AJAX`, `jQuery`, etc ainsi que les scripts nécessaires au bon fonctionnement de la page sont déclarés en toute fin du fichier `index.html`. C'est pour cette raison que le script `cities.js` a été rajouté dans cette section.
+
+Les requêtes `AJAX` sont  ainsi envoyées depuis le navigateur web. Nous pouvons alors les visualiser directement dans le navigateur `Mozilla Firefox` sous `Outils/Développement Web/Outils de développement`. Sous l'onglet `réseau`, nous pouvons voir les requêtes effectuées par la page pour charger les scripts `js` et ensuite pour exécuter les requêtes `AJAX`.
+
+[![]()]()
+
