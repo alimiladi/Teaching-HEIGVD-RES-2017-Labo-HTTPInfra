@@ -105,5 +105,5 @@ Nous avons remarqué que les importations des librairies `js`, `AJAX`, `jQuery`,
 
 Les requêtes `AJAX` sont  ainsi envoyées depuis le navigateur web. Nous pouvons alors les visualiser directement dans le navigateur `Mozilla Firefox` sous `Outils/Développement Web/Outils de développement`. Sous l'onglet `réseau`, nous pouvons voir les requêtes effectuées par la page pour charger les scripts `js` et ensuite pour exécuter les requêtes `AJAX`.
 
-[![]()]()
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-ajax-jquery/ressources/ajax_network_events_js_xhr_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-ajax-jquery/ressources/ajax_network_events_js_xhr_firefox.PNG)
 
