@@ -116,7 +116,9 @@ Les modifications majeures apportées à l'infrastructure du laboratoire sont :
 * Rajout d'un script `php` ayant pour but de récupérer les variables d'environnemt du conteneur et les écrire dans le fichier de configuration statique défini à l'étape 2.
 * Rajout d'un script `bash` récupéré depuis l'image originale de `php:7.0-apache` permettant d'initialiser le serveur ainsi que de faire éventuellement quelques affichages lors du démarrage du conteneur. Ce script appelle le script `php` et redirige sa sortie dans le fichier de configuration désiré.
 * Modification du `Dockerfile` de l'image statique pour qu'il puisse copier les deux scripts cités ci-dessus dans le `filesystem` du container.
-* Lancement du conteneur du `reverse-proxy` en lui passant des variables d'environnement avec l'option `-e` de `docker`. Ces variables représentent en fait les adresses `IP` des conteneurs staatique et dynamique. 
+* Lancement du conteneur du `reverse-proxy` en lui passant des variables d'environnement avec l'option `-e` de `docker`. Ces variables représentent en fait les adresses `IP` des conteneurs statique et dynamique. 
 
 Des tests ont été effectué en lançant plusieurs conteneurs statiques et dynamiques, puis en récupérant une adresse de chacun des deux types. Ces addresses sont passées en paramètre au conteneur `reverse-proxy` qui lui, étant  le point d'entrée à l'infrastructure du laboratoire, est mappé sur un port de la `VM` de `docker`. La connexion avec le navigateur et l'inspection de la page te du trafic qui en découle semble être tout à fait cohérent.
 
+
+[![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)
