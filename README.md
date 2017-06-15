@@ -15,6 +15,10 @@ Un template gratuit a été téléchargé depuis [bootstrap](https://startbootst
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/template.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-reverse-proxy/ressources/template.PNG)
 
+Commandes pour construire l'image et lancer le conteneur: 
+* Build: `docker build -t res/apache_httpd .`
+* Lancement du conteneur `docker run -d -p 1234:80 res/apache_httpd` 
+
 ### Deuxième étape : Application express.js dockérisée servant du contenu dynamique
 
 Nous nous sommes appuiés sur le webcast fourni par le professeur afin de compléter cette partie. 
@@ -28,6 +32,11 @@ A l'aide d'un `port-mapping` entre le port de l'application (3000) et celui util
 L'application renvoie un tableau de longueur aléatoire contenant des noms de pays et cités aléatoires en réaction à la requête `GET` de la racine `/`.
 
 Le module `chance.js` est utilisé pour la génération de contenu aléatoire. La longueur du tableau est aussi générée aléatoirement. Dans chaque entrée du tableau on a le nom d'un pays et le nom d'une ville aléatoires.
+
+Commandes pour construire l'image et lancer le conteneur: 
+* Build: `docker build -t res/express .`
+* Lancement du conteneur `docker run -d -p 9090:3000 res/express` 
+
 
 **Test sur localhost avec le navigateur**
 
@@ -68,6 +77,11 @@ Après avoir effectué les tests nécessaires de connectivité dans un container
 L'image ainsi construite et le container lancé avec un `port-mapping`, nous avons pu tester que le `reverse-proxy` fonctionnait bien avec un `telnet`mais pas avec le navigateur. Le problème est que dans ce dernier, il n'y a pas moyen de spécifier le nom d'hôte ce qui fait que le `rp` refuse l'accès. Pour palier à ceci, un nom de domaine a été rajouté dans le fichier `C:\Windows\System32\drivers\etc\Hosts` dans windows (`/etc/hosts` dans linux).
 
 L'inconvénient de l'implémentation du `reverse-proxy` de cette manière est que les addresses ip dans les routes vers les conteneurs ont été mises en dur dans le fichier de config `001-reverse-proxy.conf`. Ceci n'est pas une bonne pratique car les conteneurs risquent de changer d'adresse lors d'un prochain démarrage et les routes seront alors perdues. Ceci convient cependant dans notre cas pour tester que le `rp` fonctionne et qu'il renvoie la bonne structure.
+
+
+Commandes pour construire l'image et lancer le conteneur: 
+* Build: `docker build -t res/rp .`
+* Lancement du conteneur `docker run -d -p 9090:80 res/rp` 
 
 **Test sur le container php:7.0-apache --> routage vers l'application express**
 
@@ -119,6 +133,11 @@ Les modifications majeures apportées à l'infrastructure du laboratoire sont :
 * Lancement du conteneur du `reverse-proxy` en lui passant des variables d'environnement avec l'option `-e` de `docker`. Ces variables représentent en fait les adresses `IP` des conteneurs statique et dynamique. 
 
 Des tests ont été effectué en lançant plusieurs conteneurs statiques et dynamiques, puis en récupérant une adresse de chacun des deux types. Ces addresses sont passées en paramètre au conteneur `reverse-proxy` qui lui, étant  le point d'entrée à l'infrastructure du laboratoire, est mappé sur un port de la `VM` de `docker`. La connexion avec le navigateur et l'inspection de la page te du trafic qui en découle semble être tout à fait cohérent.
+
+
+Commandes pour construire l'image et lancer le conteneur: 
+* Build: `docker build -t res/rp .`
+* Lancement du conteneur `docker run -d -e STATIC_APP=172.17.0.4 -e DYNAMIC_APP 172.17.0.5 -p 9090:3000 res/express` 
 
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)
