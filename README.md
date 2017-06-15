@@ -137,7 +137,7 @@ Des tests ont été effectué en lançant plusieurs conteneurs statiques et dyna
 
 Commandes pour construire l'image et lancer le conteneur: 
 * Build: `docker build -t res/rp .`
-* Lancement du conteneur `docker run -d -e STATIC_APP=172.17.0.4 -e DYNAMIC_APP 172.17.0.5 -p 9090:3000 res/express` 
+* Lancement du conteneur `docker run -d -e STATIC_APP=172.17.0.4 -e DYNAMIC_APP 172.17.0.5 -p 1991:80 res/rp` 
 
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)
