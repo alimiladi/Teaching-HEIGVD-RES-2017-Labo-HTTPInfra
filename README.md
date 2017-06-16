@@ -143,6 +143,9 @@ Commandes pour construire l'image et lancer le conteneur:
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)
 ### Etapes facultatives
 #### Round Robin / load balancing
+* Lancer la commande `docker-compose up` dans le dossier `docker-compose`. Le reverse proxy écoute sur le port 80.
+* Pour supprimer les conteneurs : `docker-compose rm -f`
+
 Nous avons poursuivi par l'étapes du load balancing. Nous utilisons pour ce faire le moteur Nginx qui est très connu pour faire du reverse proxy et est beaucoup plus simple d'utilisation. Il nous permettra aussi par la suite de faire des sticky session beaucoup plus facilement. Il suffit d'ajouter une configuration "proxy_pass" dans le language de scrypting Nginx en précisant, l'interface ip (sous forme de nom) sur laquelle nous souhaitons rediriger ainsi que son port. Il s'occupera ainsi de rediriger la requete. Une close de regrouppement nous permet en dehors de l'entete de redirection nous permet de mettre en commun toute nos address et d'y faire un round robin.
 Nous utilisons ce principe pour les sites statiques en créant dans cette configuration `dockerCompose` 3 containters identiques aux étapes précédentes ainsi que les 3 containers nodes.
 
@@ -155,5 +158,11 @@ Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre s
 ![round-robin-apache](./ressources/round-robin-apache.png)
 
 Au point suivant : 
-#### Sticky session (reverse proxy & loadd balancing)
+#### Sticky session (reverse proxy & load balancing)
+
+Nous rajoutons simplement le parametre ip_hash; dans la stack de serveur apache dans la configuration `nginx.conf`. Cela nous permet de nous assurer que toute les personnes qui se connectent recoivent les informations du même serveur, et de ce fait, il y aura une seule connection tcp sur un seul serveur apache par client. Il pourra donc utiliser les mecanismes énoncés précédement comme le pipelining et autre.
+Cette solution fonctionnera donc également si le client refuse les cookies (en mode privacy par exemple).
+
+Une autre solution est d'utiliser le module sticky de nginx : https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/overview Instanciation d'un cookies à durée limitée. Mais il est préférable d'utiliser ces cookies de session du côté des serveurs backend ce qui permettra de différencier les clients entre eux.
+Le parametre a rajouter dans la stack de serveurs apache est `sticky cookie srv_id expires=1h domain=.example.com path=/;` uniquement.
 
