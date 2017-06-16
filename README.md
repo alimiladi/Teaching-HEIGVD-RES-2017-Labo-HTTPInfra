@@ -147,5 +147,7 @@ Nous avons poursuivi par l'étapes du load balancing. Nous utilisons pour ce fai
 Nous utilisons ce principe pour les sites statiques en créant dans cette configuration `dockerCompose` 3 containters identiques aux étapes précédentes ainsi que les 3 containers nodes.
 
 Nous utilisons également `docker-compose` qui nous permettra la création beaucoup plus aisée de toute les instances en une seule commande : `docker-compose up` qui lancera le script. Script qui pointe sur tout les autres fichiers `dockerfiles`.
+
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/round-robin.png)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/round-robin.png)
+
 Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre serveur répond à chaque fois. Il en est de même pour les serveurs apache
