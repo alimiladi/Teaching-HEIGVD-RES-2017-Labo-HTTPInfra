@@ -150,4 +150,8 @@ Nous utilisons également `docker-compose` qui nous permettra la création beauc
 
 ![round-robin](./ressources/round-robin.png)
 
-Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre serveur répond à chaque fois. Il en est de même pour les serveurs apache
+Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre serveur répond à chaque fois. Il en est de même pour les serveurs apache. Cependant, comme c'est round robin, nous ne gardons pas toute les requetes sur le même serveur statique. Ainsi pour une même page web, nous aurons plusieurs serveur statique qui réponderons. Ce n'est pas la bonne manière de faire car ceci impacte les performances. Les requetes ne peuvent pas utiliser le propriétés http 2.0 tel que le pipelining etc qui accélèreraient et optimiserai beaucoup le processus.
+![round-robin](./ressources/round-robin-apache.png)
+Au point suivant : 
+#### Sticky session (reverse proxy & loadd balancing)
+
