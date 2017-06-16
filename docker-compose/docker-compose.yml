@@ -1,0 +1,40 @@
+nginx:
+  image: nginx
+  links:
+     - node1:node1
+     - node2:node2
+     - node3:node3
+     - apache1:apache1
+     - apache2:apache2
+     - apache3:apache3
+  ports:
+     - "80:80"
+     - "443:443"
+  volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+     - ./nginx/www:/var/www
+
+node1:
+    build: ./node
+    ports:
+        - "3000"
+node2:
+    build: ./node
+    ports:
+        - "3000"
+node3:
+    build: ./node
+    ports:
+        - "3000"
+apache1:
+    build: ./apache
+    ports:
+        - "80"
+apache2:
+    build: ./apache
+    ports:
+        - "80"
+apache3:
+    build: ./apache
+    ports:
+        - "80"
