@@ -159,6 +159,7 @@ Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre s
 
 Au point suivant : 
 #### Sticky session (reverse proxy & load balancing)
+* comandes  : idem que précédent mais se mettre dans `docker-compose-sticky`.
 
 Nous rajoutons simplement le parametre ip_hash; dans la stack de serveur apache dans la configuration `nginx.conf`. Cela nous permet de nous assurer que toute les personnes qui se connectent recoivent les informations du même serveur, et de ce fait, il y aura une seule connection tcp sur un seul serveur apache par client. Il pourra donc utiliser les mecanismes énoncés précédement comme le pipelining et autre.
 Cette solution fonctionnera donc également si le client refuse les cookies (en mode privacy par exemple).
