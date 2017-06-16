@@ -158,5 +158,11 @@ Nous voyons sur l'image ci dessus que pour chaque requete javascript, un autre s
 ![round-robin-apache](./ressources/round-robin-apache.png)
 
 Au point suivant : 
-#### Sticky session (reverse proxy & loadd balancing)
+#### Sticky session (reverse proxy & load balancing)
+
+Nous rajoutons simplement le parametre ip_hash; dans la stack de serveur apache dans la configuration `nginx.conf`. Cela nous permet de nous assurer que toute les personnes qui se connectent recoivent les informations du même serveur, et de ce fait, il y aura une seule connection tcp sur un seul serveur apache par client. Il pourra donc utiliser les mecanismes énoncés précédement comme le pipelining et autre.
+Cette solution fonctionnera donc également si le client refuse les cookies (en mode privacy par exemple).
+
+Une autre solution est d'utiliser le module sticky de nginx : https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/overview Instanciation d'un cookies à durée limitée. Mais il est préférable d'utiliser ces cookies de session du côté des serveurs backend ce qui permettra de différencier les clients entre eux.
+Le parametre a rajouter dans la stack de serveurs apache est `sticky cookie srv_id expires=1h domain=.example.com path=/;` uniquement.
 
