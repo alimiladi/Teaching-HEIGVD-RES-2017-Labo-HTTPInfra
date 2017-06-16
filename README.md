@@ -141,3 +141,9 @@ Commandes pour construire l'image et lancer le conteneur:
 
 
 [![](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)](https://github.com/alimiladi/Teaching-HEIGVD-RES-2017-Labo-HTTPInfra/blob/fb-dynamic-config/ressources/dynamic_config_firefox.PNG)
+### Etapes facultatives
+#### Round Robin / load balancing
+Nous avons poursuivi par l'étapes du load balancing. Nous utilisons pour ce faire le moteur Nginx qui est très connu pour faire du reverse proxy et est beaucoup plus simple d'utilisation. Il nous permettra aussi par la suite de faire des sticky session beaucoup plus facilement. Il suffit d'ajouter une configuration "proxy_pass" dans le language de scrypting Nginx e précisant, linterface ip que sur laquelle nous souhaitons srediriger ainsi que son port. Il s'occupera ainsi de rediriger la requete. Une close de regrouppement nous permet en dehors de l'entete de redirection nous permet de mettre en commun toute nos address et d'y faire un round robin.
+Nous utilisons ce principe pour les sites statiques ainsi que les sites node.
+
+Nous utilisons également `docker-compose` qui nous permettra la création beaucoup plus aisée de toute les instances en une seule commande : `docker-compose up` qui lancera le scripte. scripte qui pointe sur tout les autres fichiers `ockerfiles`.
